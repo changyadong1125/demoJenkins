@@ -27,7 +27,7 @@ pipeline {
         }
         stage('打包制品') {
             steps {
-                echo 'deploy ok...'
+              archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
             }
         }
         stage('制作镜像') {
