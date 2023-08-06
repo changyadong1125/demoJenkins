@@ -3,10 +3,14 @@ pipeline {
 
     stages { //所有阶段
         stage('构建') { //stage定义一个阶段
-            steps {
-                sh 'mvn clean build'
-            }
-        }
+                    steps {
+                        //  可以先使用命令下载环境 docker pull maven:3.9.0-amazoncorretto-8
+                        withDockerContainer('maven:3.9.0-amazoncorretto-8') {
+                            // some block
+                            sh 'mvn clean package'
+                        }
+                    }
+                }
         stage('质量分析') {
             steps {
                 echo '打包  ok...'
