@@ -5,7 +5,7 @@ pipeline {
         stage('构建') { //stage定义一个阶段
                     steps {
                         //  可以先使用命令下载环境 docker pull maven:3.9.0-amazoncorretto-8
-                        withDockerContainer(args:'-v mvn-conf:/usr/share/maven/conf',image:'maven:3.9.0-amazoncorretto-8') {
+                        withDockerContainer(args:'-v mvn-conf:/usr/share/maven/conf -v mvn-rep:/root/.m2',image:'maven:3.9.0-amazoncorretto-8') {
                             // some block
                             sh 'mvn clean package'
                         }
