@@ -2,17 +2,32 @@ pipeline {
     agent any
 
     stages { //所有阶段
-        stage('build') { //stage定义一个阶段
+        stage('构建') { //stage定义一个阶段
             steps {
-                echo 'Hello World'
+                sh 'mvn clean build'
             }
         }
-        stage('package') {
+        stage('质量分析') {
             steps {
                 echo '打包  ok...'
             }
         }
-        stage('deploy') {
+        stage('单元测试') {
+            steps {
+                echo 'deploy ok...'
+            }
+        }
+        stage('打包制品') {
+            steps {
+                echo 'deploy ok...'
+            }
+        }
+        stage('制作镜像') {
+            steps {
+                echo 'deploy ok...'
+            }
+        }
+        stage('部署') {
             steps {
                 echo 'deploy ok...'
             }
