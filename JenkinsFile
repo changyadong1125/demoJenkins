@@ -37,7 +37,8 @@ pipeline {
         }
         stage('部署') {
             steps {
-                echo 'deploy ok...'
+              sh 'docker rm -f devops-demo'
+              sh 'docker run -d -p 88:8080 --name devops-demo devops-demo:v1.0'
             }
         }
     }
