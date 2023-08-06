@@ -18,8 +18,12 @@ pipeline {
         }
         stage('单元测试') {
             steps {
-                echo 'deploy ok...'
-            }
+                     withDockerContainer(
+                        args: '-v mvn-conf:/usr/share/maven/conf -v mvn-rep:/root/.m2',
+                        image: 'maven:3.9.0-amazoncorretto-8') {
+                        sh 'mvn test '
+                    }
+                 }
         }
         stage('打包制品') {
             steps {
